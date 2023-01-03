@@ -148,6 +148,14 @@ module.exports = {
       trees.push(localeTree);
     }
 
+    const userLocaleNode = new UnwatchedDir(
+      path.dirname(require.resolve('ember-cli-moment-shim'))
+    );
+
+    trees.push(
+      funnel(userLocaleNode, { include: ['**/set-user-locale.js'] })
+    );
+
     if (options.includeTimezone) {
       let timezonePath;
 
